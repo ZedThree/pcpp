@@ -759,6 +759,8 @@ class Preprocessor(PreprocessorHooks):
                     if m.arglist is None:
                         # A simple macro
                         rep = [copy.copy(_x) for _x in m.value]
+                        for r in rep:
+                            r.source = m.source
                         ex = self.expand_macros(rep, expanding_from + [t.value])
                         #print "\nExpanding macro", m, "\ninto", ex, "\nreplacing", tokens[i:i+1]
                         for e in ex:
